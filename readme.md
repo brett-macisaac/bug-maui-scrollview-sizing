@@ -28,7 +28,7 @@ Output of 'dotnet workload list' command:
 
 **Installed Workload Id**: maui-windows
 
-**Manifest Version**: dotnet workload list
+**Manifest Version**: 9.0.14/9.0.100
 
 **Installation Source**: SDK 9.0.200, VS 17.14.35821.62.3
 
