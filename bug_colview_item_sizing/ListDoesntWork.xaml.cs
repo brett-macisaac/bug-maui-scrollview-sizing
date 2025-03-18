@@ -106,21 +106,6 @@ public partial class ListDoesntWork : ContentPage
         }
     );
 
-    public ICommand CmdShowList => new Command(
-        () =>
-        {
-            ShowList = !ShowList;
-        }
-    );
-
-    public ICommand CmdHideList => new Command(
-        () =>
-        {
-            ShowList = false;
-        }
-    );
-
-
     public ICommand CmdToggleShowList => new Command(
         () =>
         {

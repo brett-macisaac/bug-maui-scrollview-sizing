@@ -104,9 +104,9 @@
         </Grid>
 
         <!-- The ScrollView and nested BindableLayout (nested inside a container) -->
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" IsVisible="{Binding ShowList, Source={x:Reference listDoesntWork}}">
 
-            <ScrollView IsVisible="{Binding ShowList, Source={x:Reference listDoesntWork}}">
+            <ScrollView>
 
                 <VerticalStackLayout 
                     Spacing="15"
