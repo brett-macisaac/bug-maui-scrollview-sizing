@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:bug_colview_item_sizing"
+    x:Class="bug_colview_item_sizing.ListWorks"
+    Shell.NavBarIsVisible="True"
+    Shell.FlyoutBehavior="Disabled"
+    x:DataType="local:ListWorks"
+    x:Name="listWorks"
+>
+    <ContentPage.Resources>
+
+        <ResourceDictionary>
+
+            <Style TargetType="Button" Class="btnTableSelect">
+
+                <Setter Property="Padding" Value="10, 5, 10, 5" />
+                <Setter Property="CornerRadius" Value="5" />
+
+                <Setter Property="FontSize" Value="17" />
+
+                <Setter Property="BorderWidth" Value="2" />
+
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#007BF7" />
+                                    <Setter Property="BorderColor" Value="#007BF7" />
+                                    <Setter Property="TextColor" Value="White" />
+                                    <Setter Property="FontAttributes" Value="Bold" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="Transparent" />
+                                    <Setter Property="BorderColor" Value="#007BF7" />
+                                    <Setter Property="TextColor" Value="White" />
+                                    <Setter Property="FontAttributes" Value="None" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+
+            </Style>
+
+        </ResourceDictionary>
+
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="auto, *" Padding="10" RowSpacing="10">
+
+        <!-- Controls -->
+        <Grid 
+            Grid.Row="0"
+            HorizontalOptions="Fill" VerticalOptions="Start"
+            ColumnDefinitions="*,auto"
+            ColumnSpacing="14"
+            BackgroundColor="Transparent"
+        >
+            <CollectionView 
+                Grid.Column="0"
+                ItemsSource="{Binding ListNames, Source={x:Reference listWorks}}" 
+                HorizontalOptions="Start" VerticalOptions="Start"
+                HorizontalScrollBarVisibility="Never"
+                SelectionMode="Single"
+                SelectedItem="{Binding SelectedListName, Source={x:Reference listWorks}}"
+                SelectionChangedCommand="{Binding SwitchTableCommand, Source={x:Reference listWorks}}"
+                MaximumHeightRequest="35"
+                BackgroundColor="Transparent"
+            >
+
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10" />
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="{x:Type x:String}">
+
+                        <Button
+                            StyleClass="btnTableSelect" InputTransparent="True"
+                            Text="{Binding .}"
+                        />
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+
+            <Button
+                Grid.Column="1"
+                Command="{Binding CmdToggleShowList, Source={x:Reference listWorks}}"
+                BackgroundColor="#007BF7" 
+                FontSize="18" 
+                TextColor="White"
+                Padding="7"
+                Text="Toggle IsVisible"
+                HeightRequest="40"
+            />
+
+        </Grid>
+
+        <!-- The ScrollView and nested BindableLayout (not nested inside a container) -->
+        <ScrollView Grid.Row="1" IsVisible="{Binding ShowList, Source={x:Reference listWorks}}">
+
+            <VerticalStackLayout 
+                Spacing="15"
+                BindableLayout.ItemsSource="{Binding List, Source={x:Reference listWorks}}"
+            >
+
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate x:DataType="{x:Type x:String}">
+
+                        <Grid 
+                            MaximumWidthRequest="400" HeightRequest="100" 
+                            BackgroundColor="#007BF7"
+                        >
+                            <Label 
+                                Text="{Binding .}" 
+                                FontSize="18" FontAttributes="Bold"
+                                HorizontalOptions="Center" VerticalOptions="Center"
+                            />
+                        </Grid>
+
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+
+            </VerticalStackLayout>
+
+        </ScrollView>
+
+    </Grid>
+
+</ContentPage>

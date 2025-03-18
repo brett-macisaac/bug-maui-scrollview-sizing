@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="bug_colview_item_sizing.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:bug_colview_item_sizing"
+    xmlns:icons="clr-namespace:bug_colview_item_sizing.Icons"
+    Shell.FlyoutBehavior="Flyout"
+    Shell.TitleColor="White"
+    Title="bug_colview_item_sizing"
+>
+
+    <TabBar 
+        Route="main" 
+        Title="Home" 
+    >
+
+
+        <Tab
+            Title="Doesn't Work"
+            Route="ListDoesntWork"
+            x:Name="tablstDstWrk"
+        >
+            <ShellContent
+                Title = "Doesn't Work"
+                ContentTemplate="{DataTemplate local:ListDoesntWork}"
+            />
+            <Tab.Icon>
+                <FontImageSource 
+                    FontFamily="{x:Static icons:MaterialOutlineIcons.FontName}" 
+                    Glyph="{x:Static icons:MaterialOutlineIcons.Close}" 
+                    Color="White"
+                    Size="25"
+                />
+            </Tab.Icon>
+        </Tab>
+
+        <Tab
+            Title="Works"
+            Route="ListWorks"
+            x:Name="tabLstWrk"
+        >
+            <ShellContent
+                Title = "Wortks"
+                ContentTemplate="{DataTemplate local:ListWorks}"
+            />
+            <Tab.Icon>
+                <FontImageSource 
+                    FontFamily="{x:Static icons:MaterialOutlineIcons.FontName}" 
+                    Glyph="{x:Static icons:MaterialOutlineIcons.Tick}" 
+                    Color="White"
+                    Size="25"
+                />
+            </Tab.Icon>
+        </Tab>
+
+    </TabBar>
+
+</Shell>
